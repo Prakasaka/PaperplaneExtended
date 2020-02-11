@@ -25,7 +25,7 @@ async def telegraphs(grop):
                 result = await grop.client(functions.messages.ExportChatInviteRequest(
                     peer=created_chat_id,
                 ))
-                await grop.edit(f"**SuperGroup Created Successfully.\nJoin** [{group_name}]({result.link})")
+                await grop.edit(f"**SuperGroup Created Successfully.\nSuperGroup : ** [{group_name}]({result.link})")
             except Exception as e:  # pylint:disable=C0103,W0703
                 await grop.edit(str(e))
         elif type_of_group == "c":
@@ -39,7 +39,7 @@ async def telegraphs(grop):
                 result = await grop.client(functions.messages.ExportChatInviteRequest(
                     peer=created_chat_id,
                 ))
-                await grop.edit(f"**Channel Created Successfully.\nJoin** [{group_name}]({result.link})")
+                await grop.edit(f"**Channel Created Successfully.\nChannel : ** [{group_name}]({result.link})")
             except Exception as e:  # pylint:disable=C0103,W0703
                 await grop.edit(str(e))
         else:
