@@ -1,0 +1,59 @@
+{
+  "name": "Paperplane Extended - Telegram Userbot",
+  "description": "A modular Telegram userbot running on Python 3.6+ with an sqlalchemy database.",
+  "logo": "https://i.imgur.com/ATSG4w3.png",
+  "keywords": [
+    "telegram",
+    "userbot",
+    "plugin",
+    "modular",
+    "productivity"
+  ],
+  "repository": "https://github.com/AvinashReddy3108/PaperplaneExtended",
+  "website": "https://github.com/RaphielGang/Telegram-UserBot/wiki",
+  "success_url": "https://t.me/userbot_announcements",
+  "stack": "container",
+  "env": {
+    "API_KEY": {
+      "description": "Get this value from my.telegram.org.",
+      "value": ""
+    },
+    "API_HASH": {
+      "description": "Get this value from my.telegram.org.",
+      "value": ""
+    },
+    "STRING_SESSION": {
+      "description": "[REQUIRED] Get this value by running python3 string_session.py in app console.",
+      "required": false
+    },
+    "BOTLOG": {
+      "description": "Incase you want to turn off logging, put this to false",
+      "value": "False"
+    },
+    "BOTLOG_CHATID": {
+      "description": "ChatID for the Log group",
+      "value": "0"
+    },
+    "CONSOLE_LOGGER_VERBOSE": {
+      "description": "If you need Verbosity on the Logging",
+      "value": "False"
+    },
+    "PM_AUTO_BAN": {
+      "description": "PM Auto-Ban Feature Switch",
+      "required": false
+    },
+    "TMP_DOWNLOAD_DIRECTORY": {
+      "description": "Download location for many modules (GDrive, .download etc..)",
+      "value": "./",
+      "required": "False"
+    }
+  },
+  "addons": [
+      {
+        "plan": "heroku-postgresql",
+        "options": {
+          "version": "9.5"
+        }
+      }
+    ]
+  }
