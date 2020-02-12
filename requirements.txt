@@ -17,3 +17,4 @@ telegraph
 psycopg2
 psycopg2-binary
 humanize
+bs4
