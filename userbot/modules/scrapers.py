@@ -19,7 +19,6 @@ from datetime import datetime
 from requests import get
 from mtranslate import translate
 from langdetect import detect
-from gtts import gTTS
 from youtube_dl import YoutubeDL
 from youtube_dl.utils import (DownloadError, ContentTooShortError,
                               ExtractorError, GeoRestrictedError,
