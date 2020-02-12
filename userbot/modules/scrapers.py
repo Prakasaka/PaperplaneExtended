@@ -17,7 +17,6 @@ from time import sleep
 from html import unescape
 from datetime import datetime
 from requests import get
-from googletrans import LANGUAGES, Translator
 from mtranslate import translate
 from langdetect import detect
 from gtts import gTTS
