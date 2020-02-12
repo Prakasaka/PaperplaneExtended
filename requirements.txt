@@ -20,3 +20,7 @@ telethon-session-sqlalchemy>=0.2.6
 telegraph
 psycopg2
 psycopg2-binary
+gitpython
+pytz
+gTTS>=2.0.1
+gTTS-token>=1.1.3
