@@ -35,7 +35,7 @@ from youtube_dl.utils import (DownloadError, ContentTooShortError,
                               ExtractorError, GeoRestrictedError,
                               MaxDownloadsReached, PostProcessingError,
                               UnavailableVideoError, XAttrMetadataError)
-from userbot import CMD_HELP, BOTLOG, BOTLOG_CHATID,
+from userbot import CMD_HELP, BOTLOG, BOTLOG_CHATID
 from userbot.events import register
 
 LANG = "en"
