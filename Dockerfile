@@ -15,9 +15,7 @@ RUN apk add --no-cache --update \
     git \
     sudo \
     python3 \
-    python3-dev \
-
-RUN pip3 install --upgrade pip setuptools
+    python3-dev
 
 RUN git clone -b master https://github.com/Prakasaka/PaperplaneExtended /home/userbot/userbot
 WORKDIR /home/userbot/userbot
