@@ -8,7 +8,7 @@
 import os
 
 from sys import version_info
-from logging import basicConfig, getLogger, INFO, DEBUG
+from logging import basicConfig, getLogger, INFO
 from distutils.util import strtobool as sb
 from dotenv import load_dotenv
 from requests import get
