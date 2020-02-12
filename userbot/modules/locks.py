@@ -4,12 +4,12 @@ from telethon.tl.types import ChatBannedRights
 
 from asyncio import sleep
 from userbot import CMD_HELP
-from userbot.events import reg==ter
+from userbot.events import register
 
 
-@reg==ter(outgoing=True, pattern=r"^.lock ?(.*)")
+@register(outgoing=True, pattern=r"^.lock ?(.*)")
 async def locks(event):
-    if not event.text[0].==alpha() and event.text[0] not in ("/", "#", "@",
+    if not event.text[0].isalpha() and event.text[0] not in ("/", "#", "@",
                                                              "!"):
         input_str = event.pattern_match.group(1)
         peer_id = event.chat_id
@@ -66,6 +66,18 @@ async def locks(event):
             changeinfo = True
             what = "everything"
 
+msg = True
+            media = True
+            sticker = True
+            gif = True
+            gamee = True
+            ainline = True
+            gpoll = True
+            adduser = True
+            cpin = True
+            changeinfo = True
+            what = "everything"
+
         lock_rights = ChatBannedRights(
             until_date=None,
             send_messages=msg,
@@ -83,16 +95,16 @@ async def locks(event):
             await event.client(
                 EditChatDefaultBannedRightsRequest(peer=peer_id,
                                                    banned_rights=lock_rights))
-            await event.edit(f"`Locked {what} for th== chat !!`")
+            await event.edit(f"`Locked {what} for this chat !!`")
             await sleep(3)
             await event.delete()
         except BaseException:
             await event.edit("`Do I have proper rights for that ??`")
 
 
-@reg==ter(outgoing=True, pattern=r"^.unlock ?(.*)")
+@register(outgoing=True, pattern=r"^.unlock ?(.*)")
 async def rem_locks(event):
-    if not event.text[0].==alpha() and event.text[0] not in ("/", "#", "@",
+    if not event.text[0].isalpha() and event.text[0] not in ("/", "#", "@",
                                                              "!"):
         input_str = event.pattern_match.group(1)
         peer_id = event.chat_id
@@ -167,7 +179,7 @@ async def rem_locks(event):
                 EditChatDefaultBannedRightsRequest(peer=peer_id,
                                                    banned_rights=unlock_rights)
             )
-            await event.edit(f"`Unlocked {what} for th== chat !!`")
+            await event.edit(f"`Unlocked {what} for this chat !!`")
             await sleep(3)
             await event.delete()
         except BaseException:
