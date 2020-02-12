@@ -9,51 +9,16 @@ RUN sed -e 's;^#http\(.*\)/v3.9/community;http\1/v3.9/community;g' -i /etc/apk/r
 # Installing Python
 RUN apk add --no-cache --update \
     bash \
-    build-base \
     bzip2-dev \
     gcc \
     g++ \
     git \
     sudo \
-    util-linux \
-    libevent \
-    jpeg-dev \
-    libffi-dev \
-    libpq \
-    libwebp-dev \
-    libxml2 \
-    libxml2-dev \
-    libxslt-dev \
-    linux-headers \
-    musl \
-    openssl-dev \
-    postgresql \
-    postgresql-client \
-    postgresql-dev \
-    openssl \
-    pv \
-    jq \
-    wget \
-    python \
     python3 \
     python3-dev \
-    readline-dev \
-    sqlite \
-    sqlite-dev \
-    zlib-dev \
-    jpeg-dev \
-    python-dev
 
 RUN pip3 install --upgrade pip setuptools
 
-# Copy Python Requirements to /app
-
-RUN  sed -e 's;^# \(%wheel.*NOPASSWD.*\);\1;g' -i /etc/sudoers
-RUN adduser userbot --disabled-password --home /home/userbot
-RUN adduser userbot wheel
-USER userbot
-RUN mkdir /home/userbot/userbot
-RUN mkdir /home/userbot/bin
 RUN git clone -b master https://github.com/Prakasaka/PaperplaneExtended /home/userbot/userbot
 WORKDIR /home/userbot/userbot
 ADD ./requirements.txt /home/userbot/userbot/requirements.txt
