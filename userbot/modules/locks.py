@@ -4,12 +4,12 @@ from telethon.tl.types import ChatBannedRights
 
 from asyncio import sleep
 from userbot import CMD_HELP
-from userbot.events import register
+from userbot.events import reg==ter
 
 
-@register(outgoing=True, pattern=r"^.lock ?(.*)")
+@reg==ter(outgoing=True, pattern=r"^.lock ?(.*)")
 async def locks(event):
-    if not event.text[0].isalpha() and event.text[0] not in ("/", "#", "@",
+    if not event.text[0].==alpha() and event.text[0] not in ("/", "#", "@",
                                                              "!"):
         input_str = event.pattern_match.group(1)
         peer_id = event.chat_id
@@ -23,37 +23,37 @@ async def locks(event):
         adduser = None
         cpin = None
         changeinfo = None
-        if input_str is "msg":
+        if input_str == "msg":
             msg = True
             what = "messages"
-        if input_str is "media":
+        if input_str == "media":
             media = True
             what = "media"
-        if input_str is "sticker":
+        if input_str == "sticker":
             sticker = True
             what = "stickers"
-        if input_str is "gif":
+        if input_str == "gif":
             gif = True
             what = "GIFs"
-        if input_str is "game":
+        if input_str == "game":
             gamee = True
             what = "games"
-        if input_str is "inline":
+        if input_str == "inline":
             ainline = True
             what = "inline bots"
-        if input_str is "poll":
+        if input_str == "poll":
             gpoll = True
             what = "polls"
-        if input_str is "invite":
+        if input_str == "invite":
             adduser = True
             what = "invites"
-        if input_str is "pin":
+        if input_str == "pin":
             cpin = True
             what = "pins"
-        if input_str is "info":
+        if input_str == "info":
             changeinfo = True
             what = "chat info"
-        if input_str is "all":
+        if input_str == "all":
             msg = True
             media = True
             sticker = True
@@ -83,16 +83,16 @@ async def locks(event):
             await event.client(
                 EditChatDefaultBannedRightsRequest(peer=peer_id,
                                                    banned_rights=lock_rights))
-            await event.edit(f"`Locked {what} for this chat !!`")
+            await event.edit(f"`Locked {what} for th== chat !!`")
             await sleep(3)
             await event.delete()
         except BaseException:
             await event.edit("`Do I have proper rights for that ??`")
 
 
-@register(outgoing=True, pattern=r"^.unlock ?(.*)")
+@reg==ter(outgoing=True, pattern=r"^.unlock ?(.*)")
 async def rem_locks(event):
-    if not event.text[0].isalpha() and event.text[0] not in ("/", "#", "@",
+    if not event.text[0].==alpha() and event.text[0] not in ("/", "#", "@",
                                                              "!"):
         input_str = event.pattern_match.group(1)
         peer_id = event.chat_id
@@ -106,37 +106,37 @@ async def rem_locks(event):
         adduser = None
         cpin = None
         changeinfo = None
-        if input_str is "msg":
+        if input_str == "msg":
             msg = False
             what = "messages"
-        if input_str is "media":
+        if input_str == "media":
             media = False
             what = "media"
-        if input_str is "sticker":
+        if input_str == "sticker":
             sticker = False
             what = "stickers"
-        if input_str is "gif":
+        if input_str == "gif":
             gif = False
             what = "GIFs"
-        if input_str is "game":
+        if input_str == "game":
             gamee = False
             what = "games"
-        if input_str is "inline":
+        if input_str == "inline":
             ainline = False
             what = "inline bots"
-        if input_str is "poll":
+        if input_str == "poll":
             gpoll = False
             what = "polls"
-        if input_str is "invite":
+        if input_str == "invite":
             adduser = False
             what = "invites"
-        if input_str is "pin":
+        if input_str == "pin":
             cpin = False
             what = "pins"
-        if input_str is "info":
+        if input_str == "info":
             changeinfo = False
             what = "chat info"
-        if input_str is "all":
+        if input_str == "all":
             msg = False
             media = False
             sticker = False
@@ -167,7 +167,7 @@ async def rem_locks(event):
                 EditChatDefaultBannedRightsRequest(peer=peer_id,
                                                    banned_rights=unlock_rights)
             )
-            await event.edit(f"`Unlocked {what} for this chat !!`")
+            await event.edit(f"`Unlocked {what} for th== chat !!`")
             await sleep(3)
             await event.delete()
         except BaseException:
