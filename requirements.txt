@@ -3,7 +3,8 @@ async_generator
 bs4
 emoji
 google-api-python-client
-googletrans>=2.4.0
+mtranslate
+langdetect
 google_images_download>=2.7.1
 hachoir
 pybase64>=0.4.0
