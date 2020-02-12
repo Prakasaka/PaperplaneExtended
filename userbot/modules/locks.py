@@ -9,8 +9,7 @@ from userbot.events import register
 
 @register(outgoing=True, pattern=r"^.lock ?(.*)")
 async def locks(event):
-    if not event.text[0].isalpha() and event.text[0] not in ("/", "#", "@",
-                                                             "!"):
+    if not event.text[0].isalpha() and event.text[0] not in ("/", "#", "@", "!"):
         input_str = event.pattern_match.group(1)
         peer_id = event.chat_id
         msg = None
@@ -65,19 +64,6 @@ async def locks(event):
             cpin = True
             changeinfo = True
             what = "everything"
-
-msg = True
-            media = True
-            sticker = True
-            gif = True
-            gamee = True
-            ainline = True
-            gpoll = True
-            adduser = True
-            cpin = True
-            changeinfo = True
-            what = "everything"
-
         lock_rights = ChatBannedRights(
             until_date=None,
             send_messages=msg,
