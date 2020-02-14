@@ -23,6 +23,7 @@ RUN apk add --no-cache --update \
     util-linux \
     libevent \
     jpeg-dev \
+    aria2 \
     libffi-dev \
     libpq \
     libwebp-dev \
