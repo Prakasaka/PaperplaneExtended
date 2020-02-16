@@ -133,6 +133,7 @@ async def pipcheck(pip):
 @register(outgoing=True, pattern="^.alive$")
 async def amireallyalive(alive):
     """ For .alive command, check if the bot is running.  """
+    if not target.text[0].isalpha() and target.text[0] not in ("/","#","@","!"):
     hooman_str = ("`"
                  "I am Working Hooman \n\n"
                  f"Telethon version: {version.__version__} \n"
