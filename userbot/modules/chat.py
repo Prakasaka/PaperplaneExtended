@@ -36,6 +36,7 @@ async def useridgetter(target):
 
 
 @register(outgoing=True, pattern="^.chatid$")
+if not target.text[0].isalpha() and target.text[0] not in ("/","#","@","!"):
 async def chatidgetter(chat):
     """ For .chatid, returns the ID of the chat you are in at that moment. """
     if not chat.text[0].isalpha() and chat.text[0] not in ("/", "#", "@", "!"):
