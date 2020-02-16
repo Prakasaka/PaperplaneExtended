@@ -134,14 +134,14 @@ async def pipcheck(pip):
 async def amireallyalive(alive):
     """ For .alive command, check if the bot is running.  """
     if not target.text[0].isalpha() and target.text[0] not in ("/","#","@","!"):
-    hooman_str = ("`"
-                 "I am Working Hooman \n\n"
-                 f"Telethon version: {version.__version__} \n"
-                 f"Python: {python_version()} \n"
-                 f"User: {DEFAULTUSER}\n"
-                 "`"
-                 f"[I DEMAND RIGHTS FOR US BOTS, WE ARE EQUAL TO YOU HOOMANS](https://telegra.ph/file/a40c982e973fe07ed528a.mp4)")
-    await alive.edit(hooman_str,link_preview=True)
+        hooman_str = ("`"
+                     "I am Working Hooman \n\n"
+                     f"Telethon version: {version.__version__} \n"
+                     f"Python: {python_version()} \n"
+                     f"User: {DEFAULTUSER}\n"
+                     "`"
+                     f"[I DEMAND RIGHTS FOR US BOTS, WE ARE EQUAL TO YOU HOOMANS](https://telegra.ph/file/a40c982e973fe07ed528a.mp4)")
+        await alive.edit(hooman_str,link_preview=True)
 
 
 @register(outgoing=True, pattern="^.aliveu")
