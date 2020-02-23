@@ -44,7 +44,7 @@ LANG = "en"
 @register(outgoing=True, pattern="^.img (.*)")
 async def img_sampler(message):
     """ For .img command, search and return images matching the query. """
-    if not event.text[0].isalpha() and event.text[0] not in ("/", "#", "@", "!"):
+    if not message.text[0].isalpha() and message.text[0] not in ("/", "#", "@", "!"):
         await message.edit("Processing...")
         query = message.pattern_match.group(1)
         args = {"keywords": keyword, "limit":5, "print_urls":False}
