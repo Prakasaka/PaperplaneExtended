@@ -47,7 +47,7 @@ async def img_sampler(message):
     if not message.text[0].isalpha() and message.text[0] not in ("/", "#", "@", "!"):
         await message.edit("Processing...")
         query = message.pattern_match.group(1)
-        args = {"keywords": keyword, "limit":5, "print_urls":False}
+        args = {"keywords": query, "limit":5, "print_urls":False}
         await message.edit("<i>Searching..</i>")
         paths = response.download(args)
         if not paths:
@@ -55,18 +55,18 @@ async def img_sampler(message):
             return
         await message.edit("<i>Uploading..</i>")
         newlist = []
-        for filename in os.listdir(f"downloads/{keyword}/"):
+        for filename in os.listdir(f"downloads/{query}/"):
             try:
-                with Image.open(f"downloads/{keyword}/{filename}") as im:
-                    newlist.append(f"downloads/{keyword}/{filename}")
+                with Image.open(f"downloads/{query}/{filename}") as im:
+                    newlist.append(f"downloads/{query}/{filename}")
             except Exception:
-                os.remove(f"downloads/{keyword}/{filename}")
+                os.remove(f"downloads/{query}/{filename}")
         if not newlist:
             await message.edit("<i>Images were broken so nothing happened</i>")
             return
         await message.client.send_message(message.chat_id, file=newlist)
         await message.delete()
-        for path in paths[0][keyword]:
+        for path in paths[0][query]:
             os.remove(path)
 
 
