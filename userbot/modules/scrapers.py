@@ -42,34 +42,32 @@ LANG = "en"
 
 
 @register(outgoing=True, pattern="^.img (.*)")
-async def img_sampler(event):
+async def img_sampler(message):
     """ For .img command, search and return images matching the query. """
     if not event.text[0].isalpha() and event.text[0] not in ("/", "#", "@", "!"):
-        await event.edit("Processing...")
-        query = event.pattern_match.group(1)
-        lim = findall(r"lim=\d+", query)
-        try:
-            lim = lim[0]
-            lim = lim.replace("lim=", "")
-            query = query.replace("lim=" + lim[0], "")
-        except IndexError:
-            lim = 3
-        response = google_images_download.googleimagesdownload()
-
-        # creating list of arguments
-        arguments = {
-            "keywords": query,
-            "limit": lim,
-            "format": "jpg",
-            "no_directory": "no_directory"
-        }
-
-        # passing the arguments to the function
-        paths = response.download(arguments)
-        lst = paths[0][query]
-        await event.client.send_file(await event.client.get_input_entity(event.chat_id), lst)
-        shutil.rmtree(os.path.dirname(os.path.abspath(lst[0])))
-        await event.delete()
+        await message.edit("Processing...")
+        query = message.pattern_match.group(1)
+        args = {"keywords": keyword, "limit":5, "print_urls":False}
+        await message.edit("<i>Searching..</i>")
+        paths = response.download(args)
+        if not paths:
+            await message.edit("<i>Nothing found</i>")
+            return
+        await message.edit("<i>Uploading..</i>")
+        newlist = []
+        for filename in os.listdir(f"downloads/{keyword}/"):
+            try:
+                with Image.open(f"downloads/{keyword}/{filename}") as im:
+                    newlist.append(f"downloads/{keyword}/{filename}")
+            except Exception:
+                os.remove(f"downloads/{keyword}/{filename}")
+        if not newlist:
+            await message.edit("<i>Images were broken so nothing happened</i>")
+            return
+        await message.client.send_message(message.chat_id, file=newlist)
+        await message.delete()
+        for path in paths[0][keyword]:
+            os.remove(path)
 
 
 @register(outgoing=True, pattern="^.yt (.*)")
