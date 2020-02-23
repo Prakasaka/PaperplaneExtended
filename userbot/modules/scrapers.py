@@ -45,8 +45,8 @@ LANG = "en"
 async def img_sampler(message):
     """ For .img command, search and return images matching the query. """
     if not message.text[0].isalpha() and message.text[0] not in ("/", "#", "@", "!"):
-        await message.edit("Processing...")
         query = message.pattern_match.group(1)
+        response = google_images_download.googleimagesdownload()
         args = {"keywords": query, "limit":5, "print_urls":False}
         await message.edit("<i>Searching..</i>")
         paths = response.download(args)
