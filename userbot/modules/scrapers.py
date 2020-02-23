@@ -42,33 +42,34 @@ LANG = "en"
 
 
 @register(outgoing=True, pattern="^.img (.*)")
-async def img_sampler(message):
+async def img_sampler(event):
     """ For .img command, search and return images matching the query. """
-    if not message.text[0].isalpha() and message.text[0] not in ("/", "#", "@", "!"):
-        query = message.pattern_match.group(1)
+    if not event.text[0].isalpha() and event.text[0] not in ("/", "#", "@", "!"):
+        await event.edit("Processing...")
+        query = event.pattern_match.group(1)
+        lim = findall(r"lim=\d+", query)
+        try:
+            lim = lim[0]
+            lim = lim.replace("lim=", "")
+            query = query.replace("lim=" + lim[0], "")
+        except IndexError:
+            lim = 3
         response = google_images_download.googleimagesdownload()
-        args = {"keywords": query, "limit":5, "print_urls":False}
-        await message.edit("<i>Searching..</i>")
-        paths = response.download(args)
-        if not paths:
-            await message.edit("<i>Nothing found</i>")
-            return
-        await message.edit("<i>Uploading..</i>")
-        newlist = []
-        for filename in os.listdir(f"downloads/{query}/"):
-            try:
-                with Image.open(f"downloads/{query}/{filename}") as im:
-                    newlist.append(f"downloads/{query}/{filename}")
-            except Exception:
-                os.remove(f"downloads/{query}/{filename}")
-        if not newlist:
-            await message.edit("<i>Images were broken so nothing happened</i>")
-            return
-        await message.client.send_message(message.chat_id, file=newlist)
-        await message.delete()
-        for path in paths[0][query]:
-            os.remove(path)
 
+        # creating list of arguments
+        arguments = {
+            "keywords": query,
+            "limit": lim,
+            "format": "jpg",
+            "no_directory": "no_directory"
+        }
+
+        # passing the arguments to the function
+        paths = response.download(arguments)
+        lst = paths[0][query]
+        await event.client.send_file(await event.client.get_input_entity(event.chat_id), lst)
+        shutil.rmtree(os.path.dirname(os.path.abspath(lst[0])))
+        await event.delete()
 
 @register(outgoing=True, pattern="^.yt (.*)")
 async def yt_search(video_q):
